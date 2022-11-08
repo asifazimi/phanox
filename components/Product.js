@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Product = ({ product }) => {
-  const { title, slug, description, image, price, color } = product.attributes;
+  const { title, slug, image, price } = product.attributes;
 
   return (
     <div key={product.id} className="group relative">

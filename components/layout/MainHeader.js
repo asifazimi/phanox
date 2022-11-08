@@ -1,6 +1,8 @@
 import { Fragment, useState } from "react";
 import Link from "next/Link";
-import { favicon } from "../../assets";
+
+// Logo
+import LogoImage from "../Logo";
 
 // Styles
 import { Dialog, Popover, Transition } from "@headlessui/react";
@@ -194,14 +196,10 @@ const Navbar = () => {
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:items-center">
-                    <a href="/">
+                    <Link href="/">
                       <span className="sr-only">Phanox</span>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=black&shade=600"
-                        alt=""
-                      />
-                    </a>
+                      <LogoImage />
+                    </Link>
                   </div>
 
                   <div className="hidden h-full lg:flex">
@@ -246,14 +244,10 @@ const Navbar = () => {
                   </div>
 
                   {/* Logo (lg-) */}
-                  <a href="/" className="lg:hidden">
+                  <Link href="/" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
-                    <img
-                      src="https://tailwindui.com/img/logos/mark.svg?color=black&shade=600"
-                      alt=""
-                      className="h-8 w-auto"
-                    />
-                  </a>
+                    <LogoImage />
+                  </Link>
 
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">

@@ -1,7 +1,6 @@
-import { Fragment } from "react";
-
 // componets
 import { Hero, TrendingProducts, Sale, Testimonials } from "../container";
+
 
 export default function Home() {
   return (
@@ -23,5 +22,6 @@ export default function Home() {
         </div>
       </main>
     </div>
+    
   );
 }

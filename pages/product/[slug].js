@@ -37,7 +37,7 @@ const ProductDetails = () => {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl py-8 px-4 sm:py-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div className="mx-auto max-w-2xl py-8 px-4 sm:py-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         {/* Product details */}
         <div className="lg:max-w-lg lg:self-end">
           <div className="mt-4">
@@ -160,7 +160,7 @@ const ProductDetails = () => {
               <div className="mt-10">
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-900 py-3 px-8 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-gray-50"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:bg-indigo-700 focus:ring-offset-2 focus:ring-offset-indigo-50"
                 >
                   Add to cart
                 </button>

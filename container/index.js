@@ -1,7 +1,5 @@
 import Hero from "./Hero";
-import Product from "../components/Product";
 import TrendingProducts from "./TrendingProducts";
-import Sale from "./Sale";
-import Testimonials from "./Testimonials";
+import Sales from "./Sales";
 
-export { Hero, Product, TrendingProducts, Sale, Testimonials };
+export { Hero, TrendingProducts, Sales };

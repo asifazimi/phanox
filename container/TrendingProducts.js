@@ -22,7 +22,7 @@ const trendingProducts = [
 
 const TrendingProducts = () => {
   return (
-    <section aria-labelledby="trending-heading" className="bg-white">
+    <section aria-labelledby="trending-heading">
       <div className="py-16 sm:py-24 lg:mx-auto lg:max-w-7xl lg:py-32 lg:px-8">
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0">
           <h2
@@ -31,13 +31,13 @@ const TrendingProducts = () => {
           >
             Trending products
           </h2>
-          <Link
-            href="/product"
+          <a
+            href="#"
             className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
           >
             See everything
             <span aria-hidden="true"> &rarr;</span>
-          </Link>
+          </a>
         </div>
 
         <div className="relative mt-8">
@@ -70,6 +70,22 @@ const TrendingProducts = () => {
                       <p className="mt-1 text-gray-900">{product.price}</p>
                     </div>
                   </div>
+
+                  <h4 className="sr-only">Available colors</h4>
+                  <ul
+                    role="list"
+                    className="mt-auto flex items-center justify-center space-x-3 pt-6"
+                  >
+                    {product.availableColors.map((color) => (
+                      <li
+                        key={color.name}
+                        className="h-4 w-4 rounded-full border border-black border-opacity-10"
+                        style={{ backgroundColor: color.colorBg }}
+                      >
+                        <span className="sr-only"> {color.name} </span>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
@@ -77,13 +93,13 @@ const TrendingProducts = () => {
         </div>
 
         <div className="mt-12 px-4 sm:hidden">
-          <Link
-            href="/product"
+          <a
+            href="#"
             className="text-sm font-semibold text-indigo-600 hover:text-indigo-500"
           >
             See everything
             <span aria-hidden="true"> &rarr;</span>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

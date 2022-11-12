@@ -1,5 +1,6 @@
 // componets
 import { Hero, TrendingProducts, Sales } from "../container";
+import { pc } from "../assets";
 
 const trendingProducts = [
   {
@@ -83,6 +84,11 @@ export default function Home() {
                 alt=""
                 className="h-full w-full object-cover object-center"
               />
+              {/* <img
+                src={pc}
+                alt="hero"
+                className="h-full w-full object-cover object-center"
+              /> */}
             </div>
           </div>
         </div>

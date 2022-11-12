@@ -1,3 +1,5 @@
+import { pc } from "../assets";
+
 const Hero = () => {
   return (
     <div className="flex flex-col border-b border-gray-200 lg:border-0">

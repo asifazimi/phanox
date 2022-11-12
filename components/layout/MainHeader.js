@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import Link from "next/link";
+import NavLink from "next/link";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -9,6 +9,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+// context
+import { useProductContext } from "../../lib/context";
 
 // Logo
 import LogoImage from "../Logo";
@@ -24,6 +26,8 @@ const navigation = {
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // GLobalStates
+  const { quantity, showCart } = useProductContext();
 
   return (
     <div className="bg-white">
@@ -70,32 +74,32 @@ const Navbar = () => {
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <a
+                      <NavLink
                         href={page.href}
                         className="-m-2 block p-2 font-medium text-gray-900"
                       >
                         {page.name}
-                      </a>
+                      </NavLink>
                     </div>
                   ))}
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   <div className="flow-root">
-                    <a
+                    <NavLink
                       href="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Create an account
-                    </a>
+                    </NavLink>
                   </div>
                   <div className="flow-root">
-                    <a
+                    <NavLink
                       href="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
 
@@ -168,19 +172,19 @@ const Navbar = () => {
               </p>
 
               <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                <a
+                <NavLink
                   href="#"
                   className="text-sm font-medium text-white hover:text-gray-100"
                 >
                   Create an account
-                </a>
+                </NavLink>
                 <span className="h-6 w-px bg-gray-600" aria-hidden="true" />
-                <a
+                <NavLink
                   href="#"
                   className="text-sm font-medium text-white hover:text-gray-100"
                 >
                   Sign in
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -192,10 +196,10 @@ const Navbar = () => {
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:items-center">
-                    <Link href="/">
+                    <NavLink href="/">
                       <span className="sr-only">Your Company</span>
                       <LogoImage />
-                    </Link>
+                    </NavLink>
                   </div>
 
                   <div className="hidden h-full lg:flex">
@@ -203,13 +207,13 @@ const Navbar = () => {
                     <Popover.Group className="ml-8">
                       <div className="flex h-full justify-center space-x-8">
                         {navigation.pages.map((page) => (
-                          <a
+                          <NavLink
                             key={page.name}
                             href={page.href}
                             className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                           >
                             {page.name}
-                          </a>
+                          </NavLink>
                         ))}
                       </div>
                     </Popover.Group>
@@ -227,7 +231,7 @@ const Navbar = () => {
                     </button>
 
                     {/* Search */}
-                    <a
+                    <NavLink
                       href="#"
                       className="ml-2 p-2 text-gray-400 hover:text-gray-500"
                     >
@@ -236,20 +240,20 @@ const Navbar = () => {
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
-                    </a>
+                    </NavLink>
                   </div>
 
                   {/* Logo (lg-) */}
-                  <Link href="/" className="lg:hidden">
+                  <NavLink href="/" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <LogoImage />
-                  </Link>
+                  </NavLink>
 
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">
                       <div className="flex space-x-8">
                         <div className="hidden lg:flex">
-                          <a
+                          <NavLink
                             href="#"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
                           >
@@ -258,17 +262,17 @@ const Navbar = () => {
                               className="h-6 w-6"
                               aria-hidden="true"
                             />
-                          </a>
+                          </NavLink>
                         </div>
 
                         <div className="flex">
-                          <a
+                          <NavLink
                             href="#"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
                           >
                             <span className="sr-only">Account</span>
                             <UserIcon className="h-6 w-6" aria-hidden="true" />
-                          </a>
+                          </NavLink>
                         </div>
                       </div>
 
@@ -278,7 +282,7 @@ const Navbar = () => {
                       />
 
                       <div className="flow-root">
-                        <a
+                        <NavLink
                           href="#"
                           className="group -m-2 flex items-center p-2"
                         >
@@ -286,13 +290,15 @@ const Navbar = () => {
                             className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                             aria-hidden="true"
                           />
-                          <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                            0
-                          </span>
+                          {showCart && (
+                            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                              {quantity}
+                            </span>
+                          )}
                           <span className="sr-only">
                             items in cart, view bag
                           </span>
-                        </a>
+                        </NavLink>
                       </div>
                     </div>
                   </div>

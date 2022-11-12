@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // Logo
 import LogoImage from "../Logo";
 
@@ -46,12 +48,12 @@ const Footer = () => {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.products.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a
+                          <Link
                             href={item.href}
                             className="text-gray-500 hover:text-gray-600"
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -63,12 +65,12 @@ const Footer = () => {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.customerService.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a
+                          <Link
                             href={item.href}
                             className="text-gray-500 hover:text-gray-600"
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -82,12 +84,12 @@ const Footer = () => {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.company.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a
+                          <Link
                             href={item.href}
                             className="text-gray-500 hover:text-gray-600"
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -97,12 +99,12 @@ const Footer = () => {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.legal.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a
+                          <Link
                             href={item.href}
                             className="text-gray-500 hover:text-gray-600"
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -123,13 +125,13 @@ const Footer = () => {
           <div className="mt-4 flex items-center justify-center md:mt-0">
             <div className="flex space-x-8">
               {footerNavigation.bottomLinks.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className="text-sm text-gray-500 hover:text-gray-600"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

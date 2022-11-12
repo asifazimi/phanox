@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 import { useQuery } from "urql";
 import { GET_PRODUCT_QUERY } from "../../lib/query";
+import { useProductContext } from "../../lib/context";
 import { Quantity } from "../../styles/ProductDetails";
 
 // Icons
@@ -16,6 +17,17 @@ const ProductDetails = () => {
   const router = useRouter();
   const slug = router.query.slug;
 
+  // reviews
+  const reviews = { average: 4, totalCount: 1624 };
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
+  // GLobal States
+  const { quantity, increaseQuantity, decreaseQuantity, onAdd } =
+    useProductContext();
+
   // Fetch Graphql data
   const [results] = useQuery({
     query: GET_PRODUCT_QUERY,
@@ -26,14 +38,15 @@ const ProductDetails = () => {
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>error</p>;
 
-  const { title, description, image, price } = data.products.data[0].attributes;
+  const product = data.products.data[0].attributes;
+  // Fetching product items
+  const { title, description, image, price } = product;
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
-
-  // reviews
-  const reviews = { average: 4, totalCount: 1624 };
+  // Add new items
+  const addItems = (e) => {
+    e.preventDefault();
+    onAdd(product, quantity);
+  };
 
   return (
     <div className="bg-white">
@@ -117,46 +130,45 @@ const ProductDetails = () => {
               Product options
             </h2>
 
-            <form>
-              <div className="sm:flex sm:justify-between">
-                {/*  Quantity */}
-                <Quantity className="space-x-2">
-                  <span className="block text-sm font-medium text-gray-700">
-                    Quantity
-                  </span>
-                  <button>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm3 10.5a.75.75 0 000-1.5H9a.75.75 0 000 1.5h6z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                  <p className="text-base text-gray-500">0</p>
-                  <button>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="w-6 h-6 "
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
+            <div className="sm:flex sm:justify-between">
+              {/*  Quantity */}
+              <Quantity className="space-x-2">
+                <span className="block text-sm font-medium text-gray-700">
+                  Quantity
+                </span>
+                <button onClick={decreaseQuantity}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm3 10.5a.75.75 0 000-1.5H9a.75.75 0 000 1.5h6z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <p className="text-base text-gray-500">{quantity}</p>
+                <button onClick={increaseQuantity}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6 "
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </Quantity>
+            </div>
 
-                  {/* <div className="flex space-x-2 justify-center">button</div> */}
-                </Quantity>
-              </div>
+            <form onSubmit={addItems}>
               <div className="mt-10">
                 <button
                   type="submit"

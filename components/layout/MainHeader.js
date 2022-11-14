@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import NavLink from "next/link";
+import Link from "next/link";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -74,32 +74,32 @@ const Navbar = () => {
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <NavLink
+                      <a
                         href={page.href}
                         className="-m-2 block p-2 font-medium text-gray-900"
                       >
                         {page.name}
-                      </NavLink>
+                      </a>
                     </div>
                   ))}
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   <div className="flow-root">
-                    <NavLink
+                    <a
                       href="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Create an account
-                    </NavLink>
+                    </a>
                   </div>
                   <div className="flow-root">
-                    <NavLink
+                    <a
                       href="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
-                    </NavLink>
+                    </a>
                   </div>
                 </div>
 
@@ -172,19 +172,19 @@ const Navbar = () => {
               </p>
 
               <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                <NavLink
+                <a
                   href="#"
                   className="text-sm font-medium text-white hover:text-gray-100"
                 >
                   Create an account
-                </NavLink>
+                </a>
                 <span className="h-6 w-px bg-gray-600" aria-hidden="true" />
-                <NavLink
+                <a
                   href="#"
                   className="text-sm font-medium text-white hover:text-gray-100"
                 >
                   Sign in
-                </NavLink>
+                </a>
               </div>
             </div>
           </div>
@@ -196,10 +196,10 @@ const Navbar = () => {
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:items-center">
-                    <NavLink href="/">
+                    <a href="/">
                       <span className="sr-only">Your Company</span>
                       <LogoImage />
-                    </NavLink>
+                    </a>
                   </div>
 
                   <div className="hidden h-full lg:flex">
@@ -207,13 +207,13 @@ const Navbar = () => {
                     <Popover.Group className="ml-8">
                       <div className="flex h-full justify-center space-x-8">
                         {navigation.pages.map((page) => (
-                          <NavLink
+                          <a
                             key={page.name}
                             href={page.href}
                             className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                           >
                             {page.name}
-                          </NavLink>
+                          </a>
                         ))}
                       </div>
                     </Popover.Group>
@@ -231,7 +231,7 @@ const Navbar = () => {
                     </button>
 
                     {/* Search */}
-                    <NavLink
+                    <a
                       href="#"
                       className="ml-2 p-2 text-gray-400 hover:text-gray-500"
                     >
@@ -240,20 +240,20 @@ const Navbar = () => {
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
-                    </NavLink>
+                    </a>
                   </div>
 
                   {/* Logo (lg-) */}
-                  <NavLink href="/" className="lg:hidden">
+                  <a href="/" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <LogoImage />
-                  </NavLink>
+                  </a>
 
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">
                       <div className="flex space-x-8">
                         <div className="hidden lg:flex">
-                          <NavLink
+                          <a
                             href="#"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
                           >
@@ -262,17 +262,17 @@ const Navbar = () => {
                               className="h-6 w-6"
                               aria-hidden="true"
                             />
-                          </NavLink>
+                          </a>
                         </div>
 
                         <div className="flex">
-                          <NavLink
+                          <a
                             href="#"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
                           >
                             <span className="sr-only">Account</span>
                             <UserIcon className="h-6 w-6" aria-hidden="true" />
-                          </NavLink>
+                          </a>
                         </div>
                       </div>
 
@@ -282,7 +282,7 @@ const Navbar = () => {
                       />
 
                       <div className="flow-root">
-                        <NavLink
+                        <a
                           href="#"
                           className="group -m-2 flex items-center p-2"
                         >
@@ -298,7 +298,7 @@ const Navbar = () => {
                           <span className="sr-only">
                             items in cart, view bag
                           </span>
-                        </NavLink>
+                        </a>
                       </div>
                     </div>
                   </div>

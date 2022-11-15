@@ -282,8 +282,8 @@ const Navbar = () => {
                       />
 
                       <div className="flow-root">
-                        <a
-                          href="#"
+                        <Link
+                          href="/product/cart"
                           className="group -m-2 flex items-center p-2"
                         >
                           <ShoppingCartIcon
@@ -298,7 +298,7 @@ const Navbar = () => {
                           <span className="sr-only">
                             items in cart, view bag
                           </span>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

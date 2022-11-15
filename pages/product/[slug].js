@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useQuery } from "urql";
 import { GET_PRODUCT_QUERY } from "../../lib/query";
 import { useProductContext } from "../../lib/context";
+import QuantitySection from "../../components/QuantitySection";
 import { Quantity } from "../../styles/ProductDetails";
 
 // Icons
@@ -25,8 +26,7 @@ const ProductDetails = () => {
   }
 
   // GLobal States
-  const { quantity, increaseQuantity, decreaseQuantity, onAdd } =
-    useProductContext();
+  const { onAdd, quantity } = useProductContext();
 
   // Fetch Graphql data
   const [results] = useQuery({
@@ -40,7 +40,8 @@ const ProductDetails = () => {
 
   const product = data.products.data[0].attributes;
   // Fetching product items
-  const { title, description, image, price } = product;
+  const { title, description, image, price, size, color, inStock, leadTime } =
+    product;
 
   // Add new items
   const addItems = (e) => {
@@ -136,35 +137,7 @@ const ProductDetails = () => {
                 <span className="block text-sm font-medium text-gray-700">
                   Quantity
                 </span>
-                <button onClick={decreaseQuantity}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm3 10.5a.75.75 0 000-1.5H9a.75.75 0 000 1.5h6z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <p className="text-base text-gray-500">{quantity}</p>
-                <button onClick={increaseQuantity}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-6 h-6 "
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
+                <QuantitySection />
               </Quantity>
             </div>
 

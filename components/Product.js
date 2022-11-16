@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Product = ({ product }) => {
-  const { title, slug, image, price } = product.attributes;
+  const { title, slug, image, price, color } = product.attributes;
 
   return (
     <div key={product.id} className="group relative">
@@ -21,6 +21,7 @@ const Product = ({ product }) => {
                 {title}
               </a>
             </h3>
+            <p className="mt-1 text-sm text-gray-500">{color}</p>
           </div>
           <p className="text-sm font-medium text-gray-900">${price}</p>
         </div>

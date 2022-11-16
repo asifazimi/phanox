@@ -3,14 +3,14 @@ import { useRouter } from "next/router";
 import { useQuery } from "urql";
 import { GET_PRODUCT_QUERY } from "../../lib/query";
 import { useProductContext } from "../../lib/context";
-import QuantitySection from "../../components/QuantitySection";
-import { Quantity } from "../../styles/ProductDetails";
+import { RadioGroup } from "@headlessui/react";
 
 // Icons
 import {
   CheckIcon,
-  QuestionMarkCircleIcon,
   StarIcon,
+  ClockIcon,
+  QuestionMarkCircleIcon,
 } from "@heroicons/react/20/solid";
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 
@@ -51,7 +51,7 @@ const ProductDetails = () => {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl py-8 px-4 sm:py-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div className="mx-auto max-w-2xl py-8 px-4 sm:py-12 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         {/* Product details */}
         <div className="lg:max-w-lg lg:self-end">
           <div className="mt-4">
@@ -102,12 +102,23 @@ const ProductDetails = () => {
             </div>
 
             <div className="mt-6 flex items-center">
-              <CheckIcon
-                className="h-5 w-5 flex-shrink-0 text-green-500"
-                aria-hidden="true"
-              />
-              <p className="ml-2 text-sm text-gray-500">
-                In stock and ready to ship
+              {product.inStock ? (
+                <CheckIcon
+                  className="h-5 w-5 flex-shrink-0 text-green-500"
+                  aria-hidden="true"
+                />
+              ) : (
+                <ClockIcon
+                  className="h-5 w-5 flex-shrink-0 text-gray-300"
+                  aria-hidden="true"
+                />
+              )}
+              <p className="flex space-x-2 ml-2 text-sm text-gray-500">
+                <span>
+                  {product.inStock
+                    ? "In stock and ready to ship"
+                    : `Ships in ${product.leadTime}`}
+                </span>
               </p>
             </div>
           </section>
@@ -115,7 +126,7 @@ const ProductDetails = () => {
 
         {/* Product image */}
         <div className="mt-10  lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
-          <div className="aspect-w-1  aspect-h-1 overflow-hidden rounded-lg">
+          <div className="aspect-w-1  aspect-h-1 overflow-hidden rounded-lg bg-[#FAFAFA]">
             <img
               src={image.data.attributes.formats.small.url}
               alt={title}
@@ -131,21 +142,73 @@ const ProductDetails = () => {
               Product options
             </h2>
 
-            <div className="sm:flex sm:justify-between">
-              {/*  Quantity */}
-              <Quantity className="space-x-2">
-                <span className="block text-sm font-medium text-gray-700">
-                  Quantity
-                </span>
-                <QuantitySection />
-              </Quantity>
-            </div>
-
             <form onSubmit={addItems}>
+              <div className="sm:flex sm:justify-between">
+                {/* Size selector */}
+                {/* <RadioGroup value={selectedSize} onChange={setSelectedSize}>
+                  <RadioGroup.Label className="block text-sm font-medium text-gray-700">
+                    Size
+                  </RadioGroup.Label>
+                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {product.sizes.map((size) => (
+                      <RadioGroup.Option
+                        as="div"
+                        key={size.name}
+                        value={size}
+                        className={({ active }) =>
+                          classNames(
+                            active ? "ring-2 ring-indigo-500" : "",
+                            "relative block cursor-pointer rounded-lg border border-gray-300 p-4 focus:outline-none"
+                          )
+                        }
+                      >
+                        {({ active, checked }) => (
+                          <>
+                            <RadioGroup.Label
+                              as="p"
+                              className="text-base font-medium text-gray-900"
+                            >
+                              {size.name}
+                            </RadioGroup.Label>
+                            <RadioGroup.Description
+                              as="p"
+                              className="mt-1 text-sm text-gray-500"
+                            >
+                              {size.description}
+                            </RadioGroup.Description>
+                            <div
+                              className={classNames(
+                                active ? "border" : "border-2",
+                                checked
+                                  ? "border-indigo-500"
+                                  : "border-transparent",
+                                "pointer-events-none absolute -inset-px rounded-lg"
+                              )}
+                              aria-hidden="true"
+                            />
+                          </>
+                        )}
+                      </RadioGroup.Option>
+                    ))}
+                  </div>
+                </RadioGroup> */}
+              </div>
+              <div className="mt-4">
+                <a
+                  href="#"
+                  className="group inline-flex text-sm text-gray-500 hover:text-gray-700"
+                >
+                  <span>What size should I buy?</span>
+                  <QuestionMarkCircleIcon
+                    className="ml-2 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                    aria-hidden="true"
+                  />
+                </a>
+              </div>
               <div className="mt-10">
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-900 py-3 px-8 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:bg-gray-700 focus:ring-offset-2 focus:ring-offset-gray-50 "
+                  className="fflex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 "
                 >
                   Add to cart
                 </button>

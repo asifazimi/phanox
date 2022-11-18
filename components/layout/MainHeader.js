@@ -27,7 +27,7 @@ const navigation = {
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // GLobalStates
-  const { quantity, showCart } = useProductContext();
+  const { totalQuantities } = useProductContext();
 
   return (
     <div className="bg-white">
@@ -290,9 +290,9 @@ const Navbar = () => {
                             className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                             aria-hidden="true"
                           />
-                          {showCart && (
+                          {totalQuantities > 0 && (
                             <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                              {quantity}
+                              {totalQuantities}
                             </span>
                           )}
                           <span className="sr-only">

@@ -3,15 +3,10 @@ import { useRouter } from "next/router";
 import { useQuery } from "urql";
 import { GET_PRODUCT_QUERY } from "../../lib/query";
 import { useProductContext } from "../../lib/context";
-import { RadioGroup } from "@headlessui/react";
+import { Quantity } from "../../styles/ProductDetails";
 
 // Icons
-import {
-  CheckIcon,
-  StarIcon,
-  ClockIcon,
-  QuestionMarkCircleIcon,
-} from "@heroicons/react/20/solid";
+import { CheckIcon, StarIcon, ClockIcon } from "@heroicons/react/20/solid";
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 
 const ProductDetails = () => {
@@ -26,7 +21,8 @@ const ProductDetails = () => {
   }
 
   // GLobal States
-  const { onAdd, quantity } = useProductContext();
+  const { onAdd, quantity, increaseQuantity, decreaseQuantity } =
+    useProductContext();
 
   // Fetch Graphql data
   const [results] = useQuery({
@@ -39,6 +35,7 @@ const ProductDetails = () => {
   if (error) return <p>error</p>;
 
   const product = data.products.data[0].attributes;
+
   // Fetching product items
   const { title, description, image, price, size, color, inStock, leadTime } =
     product;
@@ -143,72 +140,43 @@ const ProductDetails = () => {
             </h2>
 
             <form onSubmit={addItems}>
-              <div className="sm:flex sm:justify-between">
-                {/* Size selector */}
-                {/* <RadioGroup value={selectedSize} onChange={setSelectedSize}>
-                  <RadioGroup.Label className="block text-sm font-medium text-gray-700">
-                    Size
-                  </RadioGroup.Label>
-                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {product.sizes.map((size) => (
-                      <RadioGroup.Option
-                        as="div"
-                        key={size.name}
-                        value={size}
-                        className={({ active }) =>
-                          classNames(
-                            active ? "ring-2 ring-indigo-500" : "",
-                            "relative block cursor-pointer rounded-lg border border-gray-300 p-4 focus:outline-none"
-                          )
-                        }
-                      >
-                        {({ active, checked }) => (
-                          <>
-                            <RadioGroup.Label
-                              as="p"
-                              className="text-base font-medium text-gray-900"
-                            >
-                              {size.name}
-                            </RadioGroup.Label>
-                            <RadioGroup.Description
-                              as="p"
-                              className="mt-1 text-sm text-gray-500"
-                            >
-                              {size.description}
-                            </RadioGroup.Description>
-                            <div
-                              className={classNames(
-                                active ? "border" : "border-2",
-                                checked
-                                  ? "border-indigo-500"
-                                  : "border-transparent",
-                                "pointer-events-none absolute -inset-px rounded-lg"
-                              )}
-                              aria-hidden="true"
-                            />
-                          </>
-                        )}
-                      </RadioGroup.Option>
-                    ))}
-                  </div>
-                </RadioGroup> */}
-              </div>
-              <div className="mt-4">
-                <a
-                  href="#"
-                  className="group inline-flex text-sm text-gray-500 hover:text-gray-700"
-                >
-                  <span>What size should I buy?</span>
-                  <QuestionMarkCircleIcon
-                    className="ml-2 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </a>
-              </div>
+              {/* Quantity */}
+              <Quantity className="space-x-1">
+                <span className="mr-1 text-base text-gray-500">Quantity</span>
+                <button onClick={decreaseQuantity}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm3 10.5a.75.75 0 000-1.5H9a.75.75 0 000 1.5h6z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <p className="text-base text-gray-500">{quantity}</p>
+                <button onClick={increaseQuantity}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6 "
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </Quantity>
               <div className="mt-10">
                 <button
                   type="submit"
-                  className="fflex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 "
+                  className="fflex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none"
                 >
                   Add to cart
                 </button>

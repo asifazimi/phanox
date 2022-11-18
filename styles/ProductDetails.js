@@ -17,6 +17,6 @@ export const Quantity = styled.div`
   }
 
   svg {
-    color: #111827;
+    color: #4f46e5;
   }
 `;

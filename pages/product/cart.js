@@ -6,9 +6,10 @@ import {
 } from "@heroicons/react/20/solid";
 // cartItems
 import { useProductContext } from "../../lib/context";
+import { Quantity } from "../../styles/ProductDetails";
 
 const ShoppingCart = () => {
-  const { cartItems } = useProductContext();
+  const { cartItems, quantity } = useProductContext();
 
   return (
     <div className="bg-white">
@@ -62,6 +63,9 @@ const ShoppingCart = () => {
                                 {product.size}
                               </p>
                             ) : null}
+                            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
+                              Qty {quantity}
+                            </p>
                           </div>
                           <p className="mt-1 text-sm font-medium text-gray-900">
                             ${product.price}
@@ -69,26 +73,6 @@ const ShoppingCart = () => {
                         </div>
 
                         <div className="mt-4 sm:mt-0 sm:pr-9">
-                          <label
-                            htmlFor={`quantity-${productIdx}`}
-                            className="sr-only"
-                          >
-                            Quantity, {product.name}
-                          </label>
-                          <select
-                            id={`quantity-${productIdx}`}
-                            name={`quantity-${productIdx}`}
-                            className="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                          >
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                            <option value={6}>6</option>
-                            <option value={7}>7</option>
-                            <option value={8}>8</option>
-                          </select>
                           <div className="absolute top-0 right-0">
                             <button
                               type="button"

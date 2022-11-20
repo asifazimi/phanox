@@ -6,10 +6,11 @@ import {
 } from "@heroicons/react/20/solid";
 // cartItems
 import { useProductContext } from "../../lib/context";
-import { Quantity } from "../../styles/ProductDetails";
 
 const ShoppingCart = () => {
-  const { cartItems, quantity } = useProductContext();
+  const { cartItems, subtotalPrice, onRemove, qty } = useProductContext();
+
+  const formatSubtotalPrice = parseFloat(subtotalPrice).toFixed(2);
 
   return (
     <div className="bg-white">
@@ -64,11 +65,11 @@ const ShoppingCart = () => {
                               </p>
                             ) : null}
                             <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
-                              Qty {quantity}
+                              Qty {product.quantity}
                             </p>
                           </div>
                           <p className="mt-1 text-sm font-medium text-gray-900">
-                            ${product.price}
+                            ${parseFloat(product.price).toFixed(2)}
                           </p>
                         </div>
 
@@ -77,6 +78,7 @@ const ShoppingCart = () => {
                             <button
                               type="button"
                               className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
+                              onClick={() => onRemove(product)}
                             >
                               <span className="sr-only">Remove</span>
                               <XMarkIcon
@@ -128,7 +130,9 @@ const ShoppingCart = () => {
               <dl className="mt-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <dt className="text-sm text-gray-600">Subtotal</dt>
-                  <dd className="text-sm font-medium text-gray-900">$99.00</dd>
+                  <dd className="text-sm font-medium text-gray-900">
+                    ${formatSubtotalPrice}
+                  </dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                   <dt className="flex items-center text-sm text-gray-600">
@@ -146,7 +150,7 @@ const ShoppingCart = () => {
                       />
                     </a>
                   </dt>
-                  <dd className="text-sm font-medium text-gray-900">$5.00</dd>
+                  <dd className="text-sm font-medium text-gray-900">0</dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                   <dt className="flex text-sm text-gray-600">
@@ -164,14 +168,14 @@ const ShoppingCart = () => {
                       />
                     </a>
                   </dt>
-                  <dd className="text-sm font-medium text-gray-900">$8.32</dd>
+                  <dd className="text-sm font-medium text-gray-900">0</dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                   <dt className="text-base font-medium text-gray-900">
                     Order total
                   </dt>
                   <dd className="text-base font-medium text-gray-900">
-                    $112.32
+                    ${formatSubtotalPrice}
                   </dd>
                 </div>
               </dl>

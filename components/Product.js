@@ -3,6 +3,8 @@ import Link from "next/link";
 const Product = ({ product }) => {
   const { title, slug, image, price, color } = product.attributes;
 
+  const formatPrice = parseFloat(price).toFixed(2);
+
   return (
     <div key={product.id} className="group relative">
       <Link href={`/product/${slug}`}>
@@ -23,7 +25,7 @@ const Product = ({ product }) => {
             </h3>
             <p className="mt-1 text-sm text-gray-500">{color}</p>
           </div>
-          <p className="text-sm font-medium text-gray-900">${price}</p>
+          <p className="text-sm font-medium text-gray-900">${formatPrice}</p>
         </div>
       </Link>
     </div>

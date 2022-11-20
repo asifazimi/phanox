@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import { Provider, createClient } from "urql";
 import Layout from "../components/layout/Layout";
+import { ToastContainer } from "react-toastify";
+
 // context
 import { ProductContextProvider } from "../lib/context";
 
@@ -11,6 +13,18 @@ function MyApp({ Component, pageProps }) {
     <ProductContextProvider>
       <Provider value={client}>
         <Layout>
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <Component {...pageProps} />
         </Layout>
       </Provider>

@@ -63,12 +63,12 @@ export default function Home() {
                       Focus on what matters
                     </h1>
                     <p className="mt-4 text-xl text-gray-600">
-                      All the charts, datepickers, and notifications in the
-                      world cant beat checking off some items on a paper card.
+                      The technology revolation begins here. With our new
+                      products - feel it. live it.
                     </p>
                     <div className="mt-6">
                       <a
-                        href="#"
+                        href="/product"
                         className="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 font-medium text-white hover:bg-indigo-700"
                       >
                         Shop Productivity

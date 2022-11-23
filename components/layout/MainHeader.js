@@ -19,9 +19,9 @@ import LogoImage from "../Logo";
 const currencies = ["USD", "AF", "EUR"];
 const navigation = {
   pages: [
-    { name: "Company", href: "/product" },
-    { name: "Stores", href: "/product" },
-    { name: "Contact", href: "/product" },
+    { name: "Company", href: "/" },
+    { name: "Stores", href: "/" },
+    { name: "Contact", href: "/" },
   ],
 };
 

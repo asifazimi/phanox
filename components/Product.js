@@ -18,7 +18,7 @@ const Product = ({ product }) => {
         <div className="mt-4 flex justify-between">
           <div>
             <h3 className="text-sm text-gray-700 capitalize">
-              <a href={`/product/${slug}`}>
+              <a href={`/${slug}`}>
                 <span aria-hidden="true" className="absolute inset-0 " />
                 {title}
               </a>

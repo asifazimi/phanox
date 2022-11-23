@@ -9,7 +9,7 @@ import { useProductContext } from "../../lib/context";
 import getStripe from "../../lib/getStripe";
 
 const ShoppingCart = () => {
-  const { cartItems, subtotalPrice, onRemove, qty } = useProductContext();
+  const { cartItems, subtotalPrice, onRemove } = useProductContext();
 
   const formatSubtotalPrice = parseFloat(subtotalPrice).toFixed(2);
 
@@ -197,7 +197,7 @@ const ShoppingCart = () => {
               <div className="mt-6">
                 <button
                   type="button"
-                  className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                  className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   onClick={handleCheckout}
                 >
                   Checkout

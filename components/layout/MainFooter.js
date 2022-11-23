@@ -2,7 +2,7 @@
 import LogoImage from "../Logo";
 
 const footerNavigation = {
-  products: [{ name: "New products", href: "/product" }],
+  products: [{ name: "New products", href: "/" }],
   customerService: [
     { name: "Contact", href: "#" },
     { name: "FAQ", href: "#" },

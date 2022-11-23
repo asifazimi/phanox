@@ -6,11 +6,25 @@ import {
 } from "@heroicons/react/20/solid";
 // cartItems
 import { useProductContext } from "../../lib/context";
+import getStripe from "../../lib/getStripe";
 
 const ShoppingCart = () => {
   const { cartItems, subtotalPrice, onRemove, qty } = useProductContext();
 
   const formatSubtotalPrice = parseFloat(subtotalPrice).toFixed(2);
+
+  // Payment
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cartItems),
+    });
+
+    const data = await response.json();
+    await stripe.redirectToCheckout({ sessionId: data.id });
+  };
 
   return (
     <div className="bg-white">
@@ -24,7 +38,7 @@ const ShoppingCart = () => {
           </div>
         )}
         {cartItems.length >= 1 && (
-          <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+          <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
             <section aria-labelledby="cart-heading" className="lg:col-span-7">
               <h2 id="cart-heading" className="sr-only">
                 Items in your shopping cart
@@ -182,14 +196,15 @@ const ShoppingCart = () => {
 
               <div className="mt-6">
                 <button
-                  type="submit"
+                  type="button"
                   className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                  onClick={handleCheckout}
                 >
                   Checkout
                 </button>
               </div>
             </section>
-          </form>
+          </div>
         )}
       </div>
     </div>

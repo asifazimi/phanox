@@ -9,8 +9,6 @@ import { Quantity } from "../../styles/ProductDetails";
 import { CheckIcon, StarIcon, ClockIcon } from "@heroicons/react/20/solid";
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 
-import { ToastContainer, toast } from "react-toastify";
-
 const ProductDetails = () => {
   const router = useRouter();
   const slug = router.query.slug;

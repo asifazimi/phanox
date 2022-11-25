@@ -15,8 +15,8 @@ export default async function handler(req, res) {
         },
         allow_promotion_codes: true,
         shipping_options: [
-          { shipping_rate: "shr_1M7FKFGidfexr6fsbgiltaa3" },
-          { shipping_rate: "shr_1M7G1eGidfexr6fsjbKjLKwJ" },
+          { shipping_rate: "shr_1M7azVGidfexr6fswBdjzUlH" },
+          { shipping_rate: "shr_1M7b0sGidfexr6fsEfkLufOv" },
         ],
         line_items: req.body.map((item) => {
           return {

@@ -10,8 +10,12 @@ import getStripe from "../../lib/getStripe";
 
 const ShoppingCart = () => {
   const { cartItems, subtotalPrice, onRemove } = useProductContext();
-
+  const shippingPrice = 5;
+  const totalPrice = subtotalPrice + shippingPrice;
+  const formatShippingPrice = parseFloat(shippingPrice).toFixed(2);
   const formatSubtotalPrice = parseFloat(subtotalPrice).toFixed(2);
+
+  const formatTotalPrice = parseFloat(totalPrice).toFixed(2);
 
   // Payment
   const handleCheckout = async () => {
@@ -164,7 +168,9 @@ const ShoppingCart = () => {
                       />
                     </a>
                   </dt>
-                  <dd className="text-sm font-medium text-gray-900">0</dd>
+                  <dd className="text-sm font-medium text-gray-900">
+                    ${formatShippingPrice}
+                  </dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                   <dt className="flex text-sm text-gray-600">
@@ -189,7 +195,7 @@ const ShoppingCart = () => {
                     Order total
                   </dt>
                   <dd className="text-base font-medium text-gray-900">
-                    ${formatSubtotalPrice}
+                    ${formatTotalPrice}
                   </dd>
                 </div>
               </dl>

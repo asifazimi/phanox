@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.9.2",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.12",
     "@stripe/react-stripe-js": "^1.15.0",

@@ -11,9 +11,9 @@ const SuccessPage = () => {
 
   useEffect(() => {
     localStorage.clear();
-    setCartItems([]);
-    setTotalQunatities(0);
-    setSubtotalPrice(0);
+    // setCartItems([]);
+    // setTotalQunatities(0);
+    // setSubtotalPrice(0);
     runFireworks();
   }, []);
 

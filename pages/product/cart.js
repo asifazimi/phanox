@@ -37,7 +37,7 @@ const ShoppingCart = () => {
           Shopping Cart
         </h1>
         {cartItems.length < 1 && (
-          <div className="flex justify-center align-center">
+          <div className="flex justify-center align-center mt-10 ">
             <h1>You have more shopping to do ❤️</h1>
           </div>
         )}

@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -9,6 +10,9 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+
+// Authentication
+import { useUser } from "@auth0/nextjs-auth0";
 
 // context
 import { useProductContext } from "../../lib/context";
@@ -29,6 +33,11 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // GLobalStates
   const { totalQuantities } = useProductContext();
+
+  const { user, isLoading } = useUser();
+
+  if (isLoading) return <p>Loading...</p>;
+  console.log(user);
 
   return (
     <div className="bg-white">
@@ -75,34 +84,28 @@ const Navbar = () => {
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <a
+                      <Link
                         href={page.href}
                         className="-m-2 block p-2 font-medium text-gray-900"
                       >
                         {page.name}
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </div>
 
-                <div className="space-y-6 border-t border-gray-200 py-6 px-4">
-                  <div className="flow-root">
-                    <a
-                      href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Create an account
-                    </a>
+                {!user && (
+                  <div className="space-y-6 border-t border-gray-200 py-6 px-4">
+                    <div className="flow-root">
+                      <Link
+                        href="/api/auth/login"
+                        className="-m-2 block p-2 font-medium text-gray-900"
+                      >
+                        Sign up
+                      </Link>
+                    </div>
                   </div>
-                  <div className="flow-root">
-                    <a
-                      href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Sign in
-                    </a>
-                  </div>
-                </div>
+                )}
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   {/* Currency selector */}
@@ -140,6 +143,7 @@ const Navbar = () => {
       <header className="relative z-10">
         <nav aria-label="Top">
           {/* Top navigation */}
+
           <div className="bg-gray-900">
             <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               {/* Currency selector */}
@@ -172,21 +176,43 @@ const Navbar = () => {
                 Get free delivery on orders over $100
               </p>
 
-              <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                <a
-                  href="#"
-                  className="text-sm font-medium text-white hover:text-gray-100"
-                >
-                  Create an account
-                </a>
-                <span className="h-6 w-px bg-gray-600" aria-hidden="true" />
-                <a
-                  href="#"
-                  className="text-sm font-medium text-white hover:text-gray-100"
-                >
-                  Sign in
-                </a>
-              </div>
+              {user && (
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end ">
+                  <Link
+                    href="/api/auth/logout"
+                    className="text-sm font-medium text-white hover:text-gray-100 flex space-x-1 items-center "
+                  >
+                    <span>Log out</span>
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-5 h-4"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                        />
+                      </svg>
+                    </span>
+                  </Link>
+                </div>
+              )}
+
+              {!user && (
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link
+                    href="/api/auth/login"
+                    className="text-sm font-medium text-white hover:text-gray-100 flex space-x-2"
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 
@@ -197,10 +223,10 @@ const Navbar = () => {
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:items-center">
-                    <a href="/">
+                    <Link href="/">
                       <span className="sr-only">Your Company</span>
                       <LogoImage />
-                    </a>
+                    </Link>
                   </div>
 
                   <div className="hidden h-full lg:flex">
@@ -245,10 +271,10 @@ const Navbar = () => {
                   </div>
 
                   {/* Logo (lg-) */}
-                  <a href="/" className="lg:hidden">
+                  <Link href="/" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <LogoImage />
-                  </a>
+                  </Link>
 
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">
@@ -265,16 +291,36 @@ const Navbar = () => {
                             />
                           </a>
                         </div>
+                        {!user && (
+                          <div className="flex">
+                            <a
+                              href="/api/auth/login"
+                              className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                            >
+                              <span className="sr-only">Account</span>
+                              <UserIcon
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                              />
+                            </a>
+                          </div>
+                        )}
 
-                        <div className="flex">
-                          <a
-                            href="#"
-                            className="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                          >
-                            <span className="sr-only">Account</span>
-                            <UserIcon className="h-6 w-6" aria-hidden="true" />
-                          </a>
-                        </div>
+                        {user && (
+                          <div className="flex items-center">
+                            <Link
+                              href="/profile"
+                              className="-m-2 px-2 text-gray-400 hover:text-gray-500"
+                            >
+                              <span className="sr-only">Account</span>
+                              <img
+                                class="w-6 h-6  transition ease-in-out rounded-full hover:ring-[0.12rem] hover:ring-gray-300 hover:dark:ring-gray-500"
+                                src={user.picture}
+                                alt={user.name}
+                              />
+                            </Link>
+                          </div>
+                        )}
                       </div>
 
                       <span

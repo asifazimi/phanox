@@ -36,9 +36,6 @@ const Navbar = () => {
 
   const { user, isLoading } = useUser();
 
-  if (isLoading) return <p>Loading...</p>;
-  console.log(user);
-
   return (
     <div className="bg-white">
       <Transition.Root show={mobileMenuOpen} as={Fragment}>
@@ -186,16 +183,19 @@ const Navbar = () => {
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-5 h-4"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                          fillRule="evenodd"
+                          d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
+                          clipRule="evenodd"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          d="M19 10a.75.75 0 00-.75-.75H8.704l1.048-.943a.75.75 0 10-1.004-1.114l-2.5 2.25a.75.75 0 000 1.114l2.5 2.25a.75.75 0 101.004-1.114l-1.048-.943h9.546A.75.75 0 0019 10z"
+                          clipRule="evenodd"
                         />
                       </svg>
                     </span>
@@ -225,7 +225,8 @@ const Navbar = () => {
                   <div className="hidden lg:flex lg:items-center">
                     <Link href="/">
                       <span className="sr-only">Your Company</span>
-                      <LogoImage />
+                      {/* <LogoImage /> */}
+                      <span className="text-gray-600">PHANOX.</span>
                     </Link>
                   </div>
 
@@ -258,7 +259,7 @@ const Navbar = () => {
                     </button>
 
                     {/* Search */}
-                    <a
+                    {/* <a
                       href="#"
                       className="ml-2 p-2 text-gray-400 hover:text-gray-500"
                     >
@@ -267,19 +268,20 @@ const Navbar = () => {
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
-                    </a>
+                    </a> */}
                   </div>
 
                   {/* Logo (lg-) */}
                   <Link href="/" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
-                    <LogoImage />
+                    {/* <LogoImage /> */}
+                    <span className="text-gray-500">PHANOX.</span>
                   </Link>
 
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">
                       <div className="flex space-x-8">
-                        <div className="hidden lg:flex">
+                        {/* <div className="hidden lg:flex">
                           <a
                             href="#"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
@@ -290,23 +292,8 @@ const Navbar = () => {
                               aria-hidden="true"
                             />
                           </a>
-                        </div>
-                        {!user && (
-                          <div className="flex">
-                            <a
-                              href="/api/auth/login"
-                              className="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                            >
-                              <span className="sr-only">Account</span>
-                              <UserIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                            </a>
-                          </div>
-                        )}
-
-                        {user && (
+                        </div> */}
+                        {user ? (
                           <div className="flex items-center">
                             <Link
                               href="/profile"
@@ -314,9 +301,23 @@ const Navbar = () => {
                             >
                               <span className="sr-only">Account</span>
                               <img
-                                class="w-6 h-6  transition ease-in-out rounded-full hover:ring-[0.12rem] hover:ring-gray-300 hover:dark:ring-gray-500"
+                                className="w-6 h-6  transition ease-in-out rounded-full hover:ring-[0.12rem] hover:ring-gray-300 hover:dark:ring-gray-500"
                                 src={user.picture}
                                 alt={user.name}
+                                referrerpolicy="no-referrer"
+                              />
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="flex">
+                            <Link
+                              href="/api/auth/login"
+                              className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                            >
+                              <span className="sr-only">Account</span>
+                              <UserIcon
+                                className="h-6 w-6"
+                                aria-hidden="true"
                               />
                             </Link>
                           </div>

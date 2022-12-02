@@ -1,8 +1,13 @@
+import Head from "next/head";
 import Link from "next/link";
 
 const PageNotFound = () => {
   return (
-    <div className="min-h-full bg-white px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+    <div className="min-h-full mb-[18rem] mt-[8rem] bg-white px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+      <Head>
+        <title>404</title>
+      </Head>
+
       <div className="mx-auto max-w-max">
         <main className="sm:flex">
           <p className="text-4xl font-bold tracking-tight text-indigo-600 sm:text-5xl">

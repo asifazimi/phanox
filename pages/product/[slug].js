@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Head from "next/head";
 
 import { useQuery } from "urql";
 import { GET_PRODUCT_QUERY } from "../../lib/query";
@@ -21,8 +23,13 @@ const ProductDetails = () => {
   }
 
   // GLobal States
-  const { onAdd, qty, increaseQuantity, decreaseQuantity } =
+  const { onAdd, qty, setQty, increaseQuantity, decreaseQuantity } =
     useProductContext();
+
+  // Reset Qty
+  useEffect(() => {
+    setQty(1);
+  }, []);
 
   // Fetch Graphql data
   const [results] = useQuery({
@@ -44,6 +51,10 @@ const ProductDetails = () => {
 
   return (
     <div className="bg-white">
+      <Head>
+        <title>Product Details</title>
+      </Head>
+
       <div className="mx-auto max-w-2xl py-8 px-4 sm:py-12 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 ">
         {/* Product details */}
         <div className="lg:max-w-lg lg:self-center">

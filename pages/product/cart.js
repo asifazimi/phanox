@@ -7,6 +7,7 @@ import {
 // cartItems
 import { useProductContext } from "../../lib/context";
 import getStripe from "../../lib/getStripe";
+import Head from "next/head";
 
 const ShoppingCart = () => {
   const { cartItems, subtotalPrice, onRemove } = useProductContext();
@@ -32,13 +33,17 @@ const ShoppingCart = () => {
 
   return (
     <div className="bg-white">
+      <Head>
+        <title>Phanox Cart</title>
+      </Head>
+
       <div className="mx-auto max-w-2xl px-4 pt-11 pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Shopping Cart
         </h1>
         {cartItems.length < 1 && (
-          <div className="flex justify-center align-center mt-10 ">
-            <h1>You have more shopping to do ❤️</h1>
+          <div className="flex justify-center align-center mt-10 mb-[20rem]">
+            <h1 className="mt-10">You have more shopping to do ❤️</h1>
           </div>
         )}
         {cartItems.length >= 1 && (

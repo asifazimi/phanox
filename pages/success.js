@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Head from "next/head";
 import { BsBagCheckFill } from "react-icons/bs";
 
 import { useProductContext } from ".././lib/context";
@@ -11,14 +12,18 @@ const SuccessPage = () => {
 
   useEffect(() => {
     localStorage.clear();
-    // setCartItems([]);
-    // setTotalQunatities(0);
-    // setSubtotalPrice(0);
+    setCartItems([]);
+    setTotalQunatities(0);
+    setSubtotalPrice(0);
     runFireworks();
   }, []);
 
   return (
     <div className="success-wrapper">
+      <Head>
+        <title>Success</title>
+      </Head>
+
       <div className="success">
         <p className="icon">
           <BsBagCheckFill />

@@ -235,13 +235,13 @@ const Navbar = () => {
                     <Popover.Group className="ml-8">
                       <div className="flex h-full justify-center space-x-8">
                         {navigation.pages.map((page) => (
-                          <a
+                          <Link
                             key={page.name}
                             href={page.href}
                             className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                           >
                             {page.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </Popover.Group>

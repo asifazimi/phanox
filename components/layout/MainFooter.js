@@ -1,5 +1,6 @@
 // Logo
 import LogoImage from "../Logo";
+import Link from "next/link";
 
 const footerNavigation = {
   bottomas: [
@@ -30,13 +31,13 @@ const Footer = () => {
           <div className="mt-4 flex items-center justify-center md:mt-0">
             <div className="flex space-x-8">
               {footerNavigation.bottomas.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className="text-sm text-gray-500 hover:text-gray-600"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

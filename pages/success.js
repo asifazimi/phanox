@@ -32,12 +32,12 @@ const SuccessPage = () => {
         <p className="email-msg">Check your email inbox for the receipt.</p>
         <p className="description">
           If you have any questions, please email
-          <a
+          <Link
             className="ml-[5px] text-indigo-600"
             href="mailto:order@example.com"
           >
             order@example.com
-          </a>
+          </Link>
         </p>
         <Link href="/">
           <button

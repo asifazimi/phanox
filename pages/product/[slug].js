@@ -10,6 +10,7 @@ import { Quantity } from "../../styles/ProductDetails";
 // Icons
 import { CheckIcon, StarIcon, ClockIcon } from "@heroicons/react/20/solid";
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const ProductDetails = () => {
   const router = useRouter();
@@ -188,7 +189,10 @@ const ProductDetails = () => {
               </button>
             </div>
             <div className="mt-6 text-center">
-              <a href="#" className="group inline-flex text-base font-medium">
+              <Link
+                href="#"
+                className="group inline-flex text-base font-medium"
+              >
                 <ShieldCheckIcon
                   className="mr-2 h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                   aria-hidden="true"
@@ -196,7 +200,7 @@ const ProductDetails = () => {
                 <span className="text-gray-500 hover:text-gray-700">
                   Lifetime Guarantee
                 </span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>

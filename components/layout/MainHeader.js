@@ -81,12 +81,12 @@ const Navbar = () => {
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <Link
+                      <a
                         href={page.href}
                         className="-m-2 block p-2 font-medium text-gray-900"
                       >
                         {page.name}
-                      </Link>
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -304,7 +304,7 @@ const Navbar = () => {
                                 className="w-6 h-6  transition ease-in-out rounded-full hover:ring-[0.12rem] hover:ring-gray-300 hover:dark:ring-gray-500"
                                 src={user.picture}
                                 alt={user.name}
-                                referrerpolicy="no-referrer"
+                                referrerPolicy="no-referrer"
                               />
                             </Link>
                           </div>

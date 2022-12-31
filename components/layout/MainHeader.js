@@ -259,7 +259,7 @@ const Navbar = () => {
                     </button>
 
                     {/* Search */}
-                    {/* <a
+                    <a
                       href="#"
                       className="ml-2 p-2 text-gray-400 hover:text-gray-500"
                     >
@@ -268,7 +268,7 @@ const Navbar = () => {
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
-                    </a> */}
+                    </a>
                   </div>
 
                   {/* Logo (lg-) */}
@@ -281,7 +281,7 @@ const Navbar = () => {
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">
                       <div className="flex space-x-8">
-                        {/* <div className="hidden lg:flex">
+                        <div className="hidden lg:flex">
                           <a
                             href="#"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
@@ -292,7 +292,7 @@ const Navbar = () => {
                               aria-hidden="true"
                             />
                           </a>
-                        </div> */}
+                        </div>
                         {user ? (
                           <div className="flex items-center">
                             <Link

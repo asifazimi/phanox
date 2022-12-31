@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Head from "next/head";
+import Link from "next/link";
 
 import { useQuery } from "urql";
 import { GET_PRODUCT_QUERY } from "../../lib/query";
@@ -10,7 +11,6 @@ import { Quantity } from "../../styles/ProductDetails";
 // Icons
 import { CheckIcon, StarIcon, ClockIcon } from "@heroicons/react/20/solid";
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 
 const ProductDetails = () => {
   const router = useRouter();
